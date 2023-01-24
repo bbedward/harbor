@@ -112,6 +112,8 @@ func (ub *URLBuilder) BuildBaseURL() (string, error) {
 		return "", err
 	}
 
+	fmt.Printf("baseURL: %s", baseURL.String())
+
 	return baseURL.String(), nil
 }
 
@@ -124,6 +126,8 @@ func (ub *URLBuilder) BuildCatalogURL(values ...url.Values) (string, error) {
 		return "", err
 	}
 
+	fmt.Printf("catalogURL: %s", catalogURL.String())
+
 	return appendValuesURL(catalogURL, values...).String(), nil
 }
 
@@ -135,6 +139,8 @@ func (ub *URLBuilder) BuildTagsURL(name reference.Named) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	fmt.Printf("tagsURL: %s", tagsURL.String())
 
 	return tagsURL.String(), nil
 }
@@ -159,6 +165,8 @@ func (ub *URLBuilder) BuildManifestURL(ref reference.Named) (string, error) {
 		return "", err
 	}
 
+	fmt.Printf("manifestURL: %s", manifestURL.String())
+
 	return manifestURL.String(), nil
 }
 
@@ -170,6 +178,8 @@ func (ub *URLBuilder) BuildBlobURL(ref reference.Canonical) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
+	fmt.Printf("layerURL: %s", layerURL.String())
 
 	return layerURL.String(), nil
 }
@@ -183,6 +193,8 @@ func (ub *URLBuilder) BuildBlobUploadURL(name reference.Named, values ...url.Val
 	if err != nil {
 		return "", err
 	}
+
+	fmt.Printf("uploadURL: %s", uploadURL.String())
 
 	return appendValuesURL(uploadURL, values...).String(), nil
 }
@@ -198,6 +210,7 @@ func (ub *URLBuilder) BuildBlobUploadChunkURL(name reference.Named, uuid string,
 	if err != nil {
 		return "", err
 	}
+	fmt.Printf("BuildBlobUploadChunkURL: %s", uploadURL.String())
 
 	return appendValuesURL(uploadURL, values...).String(), nil
 }
