@@ -122,13 +122,9 @@ func (e endpointParser) parse(s string) (*image, error) {
 
 // build Image accepts a string like library/ubuntu:14.04 and build a image struct
 func parseImg(s string) (*image, error) {
-	repo := strings.SplitN(s, "/", 2)
-	if len(repo) < 2 {
-		return nil, fmt.Errorf("unable to parse image from string: %s", s)
-	}
-	i := strings.SplitN(repo[1], ":", 2)
+	i := strings.SplitN(s, ":", 2)
 	res := &image{
-		namespace: repo[0],
+		namespace: "library",
 		repo:      i[0],
 	}
 	if len(i) == 2 {

@@ -42,7 +42,7 @@ func (suite *PutManifestMiddlewareTestSuite) SetupSuite() {
 }
 
 func (suite *PutManifestMiddlewareTestSuite) pushBlob(name string, digest string, size int64) {
-	req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/blobs/uploads/%s", name, uuid.New().String()), nil)
+	req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/blobs/uploads/%s", name, uuid.New().String()), nil)
 	req.Header.Set("Content-Length", fmt.Sprintf("%d", size))
 	res := httptest.NewRecorder()
 
@@ -98,7 +98,7 @@ func (suite *PutManifestMiddlewareTestSuite) prepare(name string) (distribution.
 	manifest, descriptor, err := distribution.UnmarshalManifest("application/vnd.docker.distribution.manifest.v2+json", []byte(body))
 	suite.Nil(err)
 
-	req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/manifests/%s", name, descriptor.Digest.String()), strings.NewReader(body))
+	req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/manifests/%s", name, descriptor.Digest.String()), strings.NewReader(body))
 	req.Header.Set("Content-Type", "application/vnd.docker.distribution.manifest.v2+json")
 	info := lib.ArtifactInfo{
 		Repository: name,

@@ -105,13 +105,13 @@ func unescapePathParams(params interface{}, fieldNames ...string) error {
 func parseProjectNameOrID(str string, isResourceName *bool) interface{} {
 	if lib.BoolValue(isResourceName) {
 		// always as projectName
-		return str
+		return "library"
 	}
 
 	v, err := strconv.ParseInt(str, 10, 64)
 	if err != nil {
 		// it's projectName
-		return str
+		return "library"
 	}
 
 	return v // projectID

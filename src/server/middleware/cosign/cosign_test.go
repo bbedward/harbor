@@ -15,8 +15,8 @@ import (
 	"github.com/goharbor/harbor/src/lib/q"
 	"github.com/goharbor/harbor/src/pkg"
 	"github.com/goharbor/harbor/src/pkg/accessory"
-	accessorymodel "github.com/goharbor/harbor/src/pkg/accessory/model"
 	"github.com/goharbor/harbor/src/pkg/accessory/model"
+	accessorymodel "github.com/goharbor/harbor/src/pkg/accessory/model"
 	_ "github.com/goharbor/harbor/src/pkg/accessory/model/base"
 	_ "github.com/goharbor/harbor/src/pkg/accessory/model/cosign"
 	"github.com/goharbor/harbor/src/pkg/artifact"
@@ -59,7 +59,7 @@ func (suite *MiddlewareTestSuite) prepare(name, ref string) (distribution.Manife
 	manifest, descriptor, err := distribution.UnmarshalManifest("application/vnd.oci.image.manifest.v1+json", []byte(body))
 	suite.Nil(err)
 
-	req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/manifests/%s", name, ref), strings.NewReader(body))
+	req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/manifests/%s", name, ref), strings.NewReader(body))
 	req.Header.Set("Content-Type", "application/vnd.oci.image.manifest.v1+json")
 	info := lib.ArtifactInfo{
 		Repository: name,

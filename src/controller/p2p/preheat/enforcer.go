@@ -61,7 +61,7 @@ const (
 	extraAttrKind           = "kind"
 	resourceActionType      = "repository"
 	resourcePullAction      = "pull"
-	manifestAPIPattern      = "%s/v2/%s/manifests/%s"
+	manifestAPIPattern      = "%s/v2/library/%s/manifests/%s"
 	accessCredHeaderKey     = "Authorization"
 	proMetaKeyContentTrust  = "enable_content_trust"
 	proMetaKeyVulnerability = "prevent_vul"

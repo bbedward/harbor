@@ -34,7 +34,7 @@ type HandlerSuite struct {
 func doPutManifestRequest(projectID int64, projectName, name, tag, dgt string, next ...http.HandlerFunc) int {
 	repository := fmt.Sprintf("%s/%s", projectName, name)
 
-	url := fmt.Sprintf("/v2/%s/manifests/%s", repository, tag)
+	url := fmt.Sprintf("/v2/library/%s/manifests/%s", repository, tag)
 	req, _ := http.NewRequest("PUT", url, nil)
 
 	afInfo := lib.ArtifactInfo{

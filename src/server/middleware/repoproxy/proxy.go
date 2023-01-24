@@ -138,12 +138,12 @@ func defaultLibrary(ctx context.Context, registryID int64, a lib.ArtifactInfo) (
 
 // defaultManifestURL return the real url for request with default project
 func defaultManifestURL(projectName string, name string, a lib.ArtifactInfo) string {
-	return fmt.Sprintf("/v2/%s/library/%s/manifests/%s", projectName, name, a.Reference)
+	return fmt.Sprintf("/v2/library/%s/library/%s/manifests/%s", projectName, name, a.Reference)
 }
 
 // defaultManifestURL return the real url for request with default project
 func defaultBlobURL(projectName string, name string, digest string) string {
-	return fmt.Sprintf("/v2/%s/library/%s/blobs/%s", projectName, name, digest)
+	return fmt.Sprintf("/v2/library/%s/library/%s/blobs/%s", projectName, name, digest)
 }
 
 func handleManifest(w http.ResponseWriter, r *http.Request, next http.Handler) error {

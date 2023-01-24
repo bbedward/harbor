@@ -89,7 +89,7 @@ func getMockAdapter(t *testing.T, hasCred, health bool) (*adapter, *httptest.Ser
 		},
 		&test.RequestHandlerMapping{
 			Method:  http.MethodGet,
-			Pattern: fmt.Sprintf("/artifactory/api/docker/%s/v2/%s/tags/list", fakeNamespace, "nginx"),
+			Pattern: fmt.Sprintf("/artifactory/api/docker/%s/v2/library/%s/tags/list", fakeNamespace, "nginx"),
 			Handler: func(w http.ResponseWriter, r *http.Request) {
 				w.WriteHeader(http.StatusOK)
 				w.Write([]byte(`{
@@ -104,7 +104,7 @@ func getMockAdapter(t *testing.T, hasCred, health bool) (*adapter, *httptest.Ser
 		},
 		&test.RequestHandlerMapping{
 			Method:  http.MethodPost,
-			Pattern: fmt.Sprintf("/v2/%s/blobs/uploads/", fakeRepository),
+			Pattern: fmt.Sprintf("/v2/library/%s/blobs/uploads/", fakeRepository),
 			Handler: func(w http.ResponseWriter, r *http.Request) {
 				w.Header().Set("Docker-Upload-Uuid", fakeUploadID)
 				w.WriteHeader(http.StatusAccepted)
@@ -112,14 +112,14 @@ func getMockAdapter(t *testing.T, hasCred, health bool) (*adapter, *httptest.Ser
 		},
 		&test.RequestHandlerMapping{
 			Method:  http.MethodPatch,
-			Pattern: fmt.Sprintf("/v2/%s/blobs/uploads/%s", fakeRepository, fakeUploadID),
+			Pattern: fmt.Sprintf("/v2/library/%s/blobs/uploads/%s", fakeRepository, fakeUploadID),
 			Handler: func(w http.ResponseWriter, r *http.Request) {
 				w.WriteHeader(http.StatusAccepted)
 			},
 		},
 		&test.RequestHandlerMapping{
 			Method:  http.MethodPut,
-			Pattern: fmt.Sprintf("/v2/%s/blobs/uploads/%s", fakeRepository, fakeUploadID),
+			Pattern: fmt.Sprintf("/v2/library/%s/blobs/uploads/%s", fakeRepository, fakeUploadID),
 			Handler: func(w http.ResponseWriter, r *http.Request) {
 				w.WriteHeader(http.StatusCreated)
 			},

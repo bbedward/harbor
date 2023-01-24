@@ -278,7 +278,7 @@ func (a *adapter) PushBlob(repository, digest string, size int64, blob io.Reader
 		return err
 	}
 
-	url := fmt.Sprintf("%s/v2/%s/blobs/uploads/%s", a.registry.URL, repository, location)
+	url := fmt.Sprintf("%s/v2/library/%s/blobs/uploads/%s", a.registry.URL, repository, location)
 	req, err := http.NewRequest(http.MethodPatch, url, blob)
 	if err != nil {
 		return err
@@ -311,7 +311,7 @@ func (a *adapter) PushBlob(repository, digest string, size int64, blob io.Reader
 }
 
 func (a *adapter) preparePushBlob(repository string) (string, error) {
-	url := fmt.Sprintf("%s/v2/%s/blobs/uploads/", a.registry.URL, repository)
+	url := fmt.Sprintf("%s/v2/library/%s/blobs/uploads/", a.registry.URL, repository)
 	req, err := http.NewRequest(http.MethodPost, url, nil)
 	if err != nil {
 		return "", err
@@ -343,7 +343,7 @@ func (a *adapter) preparePushBlob(repository string) (string, error) {
 }
 
 func (a *adapter) ackPushBlob(repository, digest, location, size string) error {
-	url := fmt.Sprintf("%s/v2/%s/blobs/uploads/%s?digest=%s", a.registry.URL, repository, location, digest)
+	url := fmt.Sprintf("%s/v2/library/%s/blobs/uploads/%s?digest=%s", a.registry.URL, repository, location, digest)
 	req, err := http.NewRequest(http.MethodPut, url, nil)
 	if err != nil {
 		return err

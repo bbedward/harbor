@@ -41,7 +41,7 @@ func (suite *PutBlobUploadMiddlewareTestSuite) SetupSuite() {
 func (suite *PutBlobUploadMiddlewareTestSuite) TestDataInBody() {
 	suite.WithProject(func(projectID int64, projectName string) {
 		digest := suite.DigestString()
-		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/photon/blobs/uploads/%s?digest=%s", projectName, uuid.New().String(), digest), nil)
+		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/photon/blobs/uploads/%s?digest=%s", projectName, uuid.New().String(), digest), nil)
 		req.Header.Set("Content-Length", "512")
 		res := httptest.NewRecorder()
 
@@ -63,7 +63,7 @@ func (suite *PutBlobUploadMiddlewareTestSuite) TestWithoutBody() {
 	suite.WithProject(func(projectID int64, projectName string) {
 		sessionID := uuid.New().String()
 		digest := suite.DigestString()
-		path := fmt.Sprintf("/v2/%s/photon/blobs/uploads/%s?digest=%s", projectName, sessionID, digest)
+		path := fmt.Sprintf("/v2/library/%s/photon/blobs/uploads/%s?digest=%s", projectName, sessionID, digest)
 
 		{
 			req := httptest.NewRequest(http.MethodPatch, path, nil)
@@ -106,7 +106,7 @@ func (suite *PutBlobUploadMiddlewareTestSuite) TestBlobInDeleting() {
 		_, err = pkg_blob.Mgr.UpdateBlobStatus(suite.Context(), &blob_models.Blob{ID: id, Status: blob_models.StatusDeleting, Version: 1})
 		suite.Nil(err)
 
-		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/photon/blobs/uploads/%s?digest=%s", projectName, uuid.New().String(), digest), nil)
+		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/photon/blobs/uploads/%s?digest=%s", projectName, uuid.New().String(), digest), nil)
 		req.Header.Set("Content-Length", "512")
 		res := httptest.NewRecorder()
 
@@ -126,7 +126,7 @@ func (suite *PutBlobUploadMiddlewareTestSuite) TestBlobInDelete() {
 		_, err = pkg_blob.Mgr.UpdateBlobStatus(suite.Context(), &blob_models.Blob{ID: id, Status: blob_models.StatusDelete})
 		suite.Nil(err)
 
-		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/photon/blobs/uploads/%s?digest=%s", projectName, uuid.New().String(), digest), nil)
+		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/photon/blobs/uploads/%s?digest=%s", projectName, uuid.New().String(), digest), nil)
 		req.Header.Set("Content-Length", "512")
 		res := httptest.NewRecorder()
 
@@ -149,7 +149,7 @@ func (suite *PutBlobUploadMiddlewareTestSuite) TestBlobInDelete() {
 
 func (suite *PutBlobUploadMiddlewareTestSuite) TestRequestWithoutDigest() {
 	suite.WithProject(func(projectID int64, projectName string) {
-		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/%s/photon/blobs/uploads/%s", projectName, uuid.New().String()), nil)
+		req := suite.NewRequest(http.MethodPut, fmt.Sprintf("/v2/library/%s/photon/blobs/uploads/%s", projectName, uuid.New().String()), nil)
 		req.Header.Set("Content-Length", "512")
 		next := suite.NextHandler(http.StatusCreated, map[string]string{})
 		res := httptest.NewRecorder()

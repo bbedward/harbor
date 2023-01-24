@@ -49,7 +49,7 @@ func MatchBlobURLPattern(path string) (repository, digest string, match bool) {
 	if len(strs) < 3 {
 		return "", "", false
 	}
-	return strs[1], strs[2], true
+	return fmt.Sprintf("%s/%s", "library", strs[1]), strs[2], true
 }
 
 // MatchBlobUploadURLPattern checks whether the provided path matches the blob upload URL pattern,
@@ -59,5 +59,5 @@ func MatchBlobUploadURLPattern(path string) (repository string, match bool) {
 	if len(strs) < 2 {
 		return "", false
 	}
-	return strs[1], true
+	return fmt.Sprintf("%s/%s", "library", strs[1]), true
 }

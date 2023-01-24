@@ -230,11 +230,11 @@ func (a adapter) DeleteManifest(repository, reference string) error {
 }
 
 func buildTagListURL(endpoint, repository string) string {
-	return fmt.Sprintf("%s/v2/%s/tags/list", endpoint, repository)
+	return fmt.Sprintf("%s/v2/library/%s/tags/list", endpoint, repository)
 }
 
 func buildManifestURL(endpoint, repository, reference string) string {
-	return fmt.Sprintf("%s/v2/%s/manifests/%s", endpoint, repository, reference)
+	return fmt.Sprintf("%s/v2/library/%s/manifests/%s", endpoint, repository, reference)
 }
 
 func (a *adapter) DeleteTag(repository, tag string) error {

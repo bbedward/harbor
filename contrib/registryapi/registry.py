@@ -76,7 +76,7 @@ class RegistryApi(object):
         bear_token = self.getBearerTokenForScope(scope)
         if bear_token is None:
             return None
-        url = "%s/v2/%s/tags/list" % (self.registry_endpoint, repository)
+        url = "%s/v2/library/%s/tags/list" % (self.registry_endpoint, repository)
         req = urllib2.Request(url)
         req.add_header('Authorization', r'Bearer %s' % (bear_token,))
         try:
@@ -91,7 +91,7 @@ class RegistryApi(object):
         bear_token = self.getBearerTokenForScope(scope)
         if bear_token is None:
             return None
-        url = "%s/v2/%s/manifests/%s" % (self.registry_endpoint, repository, reference)
+        url = "%s/v2/library/%s/manifests/%s" % (self.registry_endpoint, repository, reference)
         req = urllib2.Request(url)
         req.get_method = lambda: 'GET'
         req.add_header('Authorization', r'Bearer %s' % (bear_token,))
@@ -110,7 +110,7 @@ class RegistryApi(object):
         bear_token = self.getBearerTokenForScope(scope)
         if bear_token is None:
             raise RegistryException("manifestExist failed due to token error")
-        url = "%s/v2/%s/manifests/%s" % (self.registry_endpoint, repository, reference)
+        url = "%s/v2/library/%s/manifests/%s" % (self.registry_endpoint, repository, reference)
         req = urllib2.Request(url)
         req.get_method = lambda: 'HEAD'
         req.add_header('Authorization', r'Bearer %s' % (bear_token,))
@@ -132,7 +132,7 @@ class RegistryApi(object):
         bear_token = self.getBearerTokenForScope(scope)
         if bear_token is None:
             raise RegistryException("delete manifest failed due to token error")
-        url = "%s/v2/%s/manifests/%s" % (self.registry_endpoint, repository, digest)
+        url = "%s/v2/library/%s/manifests/%s" % (self.registry_endpoint, repository, digest)
         req = urllib2.Request(url)
         req.get_method = lambda: 'DELETE'
         req.add_header('Authorization', r'Bearer %s' % (bear_token,))
@@ -152,7 +152,7 @@ class RegistryApi(object):
         bear_token = self.getBearerTokenForScope(scope)
         if bear_token is None:
             return None
-        url = "%s/v2/%s/blobs/%s" % (self.registry_endpoint, repository, config_digest)
+        url = "%s/v2/library/%s/blobs/%s" % (self.registry_endpoint, repository, config_digest)
         req = urllib2.Request(url)
         req.get_method = lambda: 'GET'
         req.add_header('Authorization', r'Bearer %s' % (bear_token,))

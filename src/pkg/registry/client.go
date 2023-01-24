@@ -703,23 +703,23 @@ func buildCatalogURL(endpoint string) string {
 }
 
 func buildTagListURL(endpoint, repository string) string {
-	return fmt.Sprintf("%s/v2/%s/tags/list", endpoint, repository)
+	return fmt.Sprintf("%s/v2/library/%s/tags/list", endpoint, repository)
 }
 
 func buildManifestURL(endpoint, repository, reference string) string {
-	return fmt.Sprintf("%s/v2/%s/manifests/%s", endpoint, repository, reference)
+	return fmt.Sprintf("%s/v2/library/%s/manifests/%s", endpoint, repository, reference)
 }
 
 func buildBlobURL(endpoint, repository, reference string) string {
-	return fmt.Sprintf("%s/v2/%s/blobs/%s", endpoint, repository, reference)
+	return fmt.Sprintf("%s/v2/library/%s/blobs/%s", endpoint, repository, reference)
 }
 
 func buildMountBlobURL(endpoint, repository, digest, from string) string {
-	return fmt.Sprintf("%s/v2/%s/blobs/uploads/?mount=%s&from=%s", endpoint, repository, digest, from)
+	return fmt.Sprintf("%s/v2/library/%s/blobs/uploads/?mount=%s&from=%s", endpoint, repository, digest, from)
 }
 
 func buildInitiateBlobUploadURL(endpoint, repository string) string {
-	return fmt.Sprintf("%s/v2/%s/blobs/uploads/", endpoint, repository)
+	return fmt.Sprintf("%s/v2/library/%s/blobs/uploads/", endpoint, repository)
 }
 
 func buildChunkBlobUploadURL(endpoint, location, digest string, lastChunk bool) (string, error) {

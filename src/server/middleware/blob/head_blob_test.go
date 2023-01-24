@@ -27,7 +27,7 @@ func (suite *HeadBlobUploadMiddlewareTestSuite) SetupSuite() {
 }
 
 func (suite *HeadBlobUploadMiddlewareTestSuite) makeRequest(projectName, digest string) *http.Request {
-	req := httptest.NewRequest("HEAD", fmt.Sprintf("/v2/%s/blobs/%s", projectName, digest), nil)
+	req := httptest.NewRequest("HEAD", fmt.Sprintf("/v2/library/%s/blobs/%s", projectName, digest), nil)
 	info := lib.ArtifactInfo{
 		Repository: fmt.Sprintf("%s/photon", projectName),
 		Reference:  "2.0",
@@ -72,7 +72,7 @@ func (suite *HeadBlobUploadMiddlewareTestSuite) TestHeadBlobStatusDeleting() {
 		_, err = pkg_blob.Mgr.UpdateBlobStatus(suite.Context(), &blob_models.Blob{ID: id, Status: blob_models.StatusDeleting, Version: 1})
 		suite.Nil(err)
 
-		req := suite.NewRequest(http.MethodHead, fmt.Sprintf("/v2/%s/blobs/%s", projectName, digest), nil)
+		req := suite.NewRequest(http.MethodHead, fmt.Sprintf("/v2/library/%s/blobs/%s", projectName, digest), nil)
 		res := httptest.NewRecorder()
 
 		next := suite.NextHandler(http.StatusOK, map[string]string{"Docker-Content-Digest": digest})

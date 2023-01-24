@@ -45,7 +45,7 @@ func (suite *PostInitiateBlobUploadMiddlewareTestSuite) TestMountBlob() {
 
 		suite.WithProject(func(id int64, name string) {
 			query := map[string]string{"mount": digest}
-			req := suite.NewRequest(http.MethodPost, fmt.Sprintf("/v2/%s/photon/blobs/uploads", name), nil, query)
+			req := suite.NewRequest(http.MethodPost, fmt.Sprintf("/v2/library/%s/photon/blobs/uploads", name), nil, query)
 			res := httptest.NewRecorder()
 
 			next := suite.NextHandler(http.StatusCreated, nil)

@@ -75,7 +75,7 @@ func (a *adapter) ManifestExist(repository, reference string) (exist bool, desc 
 		return exist, nil, err
 	}
 
-	urls := fmt.Sprintf("%s/v2/%s/manifests/%s", a.registry.URL, repository, reference)
+	urls := fmt.Sprintf("%s/v2/library/%s/manifests/%s", a.registry.URL, repository, reference)
 
 	r, err := http.NewRequest("GET", urls, nil)
 	if err != nil {
@@ -123,7 +123,7 @@ func (a *adapter) DeleteManifest(repository, reference string) error {
 		return err
 	}
 
-	urls := fmt.Sprintf("%s/v2/%s/manifests/%s", a.registry.URL, repository, reference)
+	urls := fmt.Sprintf("%s/v2/library/%s/manifests/%s", a.registry.URL, repository, reference)
 
 	r, err := http.NewRequest("DELETE", urls, nil)
 	if err != nil {
