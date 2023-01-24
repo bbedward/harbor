@@ -39,7 +39,7 @@ func MatchManifestURLPattern(path string) (repository, reference string, match b
 	if len(strs) < 3 {
 		return "", "", false
 	}
-	return strs[1], strs[2], true
+	return fmt.Sprintf("%s/%s", "library", strs[1]), strs[2], true
 }
 
 // MatchBlobURLPattern checks whether the provided path matches the blob URL pattern,
