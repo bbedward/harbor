@@ -90,6 +90,7 @@ func ParseReference(path string) string {
 
 // ParseProjectName returns project name from distribution API URL path
 func ParseProjectName(path string) string {
+	fmt.Printf("---PATH %s\n\n", path)
 	return "library"
 	// projectName, _ := utils.ParseRepository(ParseName(path))
 	// return projectName
